@@ -935,6 +935,111 @@
     git commit -m "静态文件浏览器缓存问题"
     、、、
 
+####    局部视图
+    头部和底部视图#
+    1)新建一个头部视图文件 resources/views/layouts/_header.blade.php
+    、、、
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container ">
+        <a class="navbar-brand" href="/">Weibo App</a>
+        <ul class="navbar-nav justify-content-end">
+          <li class="nav-item"><a class="nav-link" href="/help">帮助</a></li>
+          <li class="nav-item" ><a class="nav-link" href="#">登录</a></li>
+        </ul>
+      </div>
+    </nav>
+    、、、
+    
+    文件名前面加了下划线 _，这样做是为了指定该视图文件为局部视图
+
+
+    2)创建一个底部视图，用于置放网站的一些基础信息。
+    resources/views/layouts/_footer.blade.php
+    、、、
+    <footer class="footer">
+      <img class="brand-icon" src="https://cdn.learnku.com/uploads/sites/KDiyAbV0hj1ytHpRTOlVpucbLebonxeX.png">
+      <a href="https://learnku.com/laravel/courses" target=_blank>
+        刻意练习，每日精进
+      </a>
+    
+      <div class="float-right">
+        <a href="/about" >关于</a>
+      </div>
+    </footer>
+    、、、
+    
+    
+    3）样式优化#
+    针对底部视图进行样式优化 resources/sass/app.scss
+    、、、
+    /* footer */
+    
+    footer {
+      margin-top: 45px;
+      padding-top: 5px;
+      border-top: 1px solid #eaeaea;
+      color: #777;
+      font-size: 13px;
+      font-weight: bold;
+    
+      a {
+        color: #555;
+      }
+    
+      a:hover {
+        color: #222;
+      }
+    
+      img.brand-icon {
+        width: 17px;
+        height: 17px;
+      }
+    }
+
+   、、、
+    
+    4)引入局部视图#
+    在完成头部视图和底部视图的定义后，接下来便可以在 default 视图中引用这两个视图。
+    resources/views/layouts/default.blade.php
+    、、、
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>@yield('title', 'Weibo App') - Laravel 入门教程</title>
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+      </head>
+    
+      <body>
+        @include('layouts._header')
+    
+        <div class="container">
+          <div class="offset-md-1 col-md-10">
+            @yield('content')
+            @include('layouts._footer')
+          </div>
+        </div>
+      </body>
+    </html>
+    、、、
+    
+    @include 是 Blade 提供的视图引用方法，可通过传参一个具体的文件路径名称来引用视图。
+
+####    Git 代码版本控制#
+    接着让我们将本次更改纳入版本控制中：
+    、、、
+    git add -A
+    git commit -m "切割头部和尾部子视图"
+    、、、
+
+
+####    布局中的链接
+
+
+
+
+
+
+
 
 
 
