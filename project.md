@@ -1034,7 +1034,82 @@
 
 ####    布局中的链接
 
+    常规web 链接写法
+    、、、
+    <li><a href="/help">帮助</a></li>
+    、、、
+    
+    laravel 中的链接写法：
+    //{{　}} 是在 HTML 中内嵌 PHP 的 Blade 语法标识符，表示包含在该区块内的代码都将使用 PHP 来编译运行
+    //route() 方法由 Laravel 提供，通过传递一个具体的路由名称来生成完整的 URL。
+    、、、
+    <li><a href="{{ route('help') }}">帮助</a></li>
+    、、、
 
+####    Laravel 路由
+    //定义 help 路由    
+    、、、
+    <li><a href="{{ route('help') }}">帮助</a></li>
+    、、、
+
+    //laravel 用name() 路由别名的设置
+    、、、
+    Route::get('/help', 'StaticPagesController@help')->name('help');
+    、、、
+    
+    // route('help') 渲染结果  
+    、、、
+    http://weibo.test/help
+    、、、
+
+    //路由别名需求：将 http://weibo.test/help 显示 修改为 http://weibo.test/faq 
+    、、、
+    Route::get('/faq', 'StaticPagesController@help')->name('help');
+    、、、
+
+    //定义路由别名
+    、、、
+    <?php
+    
+    Route::get('/', 'StaticPagesController@home')->name('home');
+    Route::get('/help', 'StaticPagesController@help')->name('help');
+    Route::get('/about', 'StaticPagesController@about')->name('about');
+    、、、
+
+####    使用命名路由
+    //使用route() 的方式来生成
+    路径：resources/views/layouts/_header.blade.php
+    、、、
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container ">
+        <a class="navbar-brand" href="{{ route('home') }}">Weibo App</a>
+        <ul class="navbar-nav justify-content-end">
+          <li class="nav-item"><a class="nav-link" href="{{ route('help') }}">帮助</a></li>
+          <li class="nav-item" ><a class="nav-link" href="#">登录</a></li>
+        </ul>
+      </div>
+    </nav>
+    、、、
+
+    路径：resources/views/layouts/_footer.blade.php
+    、、、
+    <footer class="footer">
+      <img class="brand-icon" src="https://cdn.learnku.com/uploads/sites/KDiyAbV0hj1ytHpRTOlVpucbLebonxeX.png">
+      <a href="https://learnku.com/laravel/courses" target=_blank>
+        刻意练习，每日精进
+      </a>
+    
+      <div class="float-right">
+        <a href="{{ route('about') }}" >关于</a>
+      </div>
+    </footer>
+    、、、
+
+####    Git 代码版本控制#
+    、、、
+    git add -A
+    git commit -u "使用命名路由"
+    、、、
 
 
 
