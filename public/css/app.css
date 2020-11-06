@@ -10961,3 +10961,13 @@ footer .gravatar {
   border-radius: 50%;
 }
 
+footer .gravatar_edit {
+  margin: 15px auto;
+  text-align: center;
+}
+
+footer .gravatar_edit .gravatar {
+  float: none;
+  max-with: 100px;
+}
+
