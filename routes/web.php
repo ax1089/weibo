@@ -33,3 +33,5 @@ Route::get('/users/{user}','UsersController@show')->name('users.show');
 Route::get('login','SessionsController@create')->name('login');
 Route::post('login','SessionsController@store')->name('login');
 Route::delete('logout','SessionsController@destory')->name('logout');
+
+Route::get('sigup/confirm/{token}','UsersController@confirmEmail')->name('confirm_email');
