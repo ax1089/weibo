@@ -90,13 +90,19 @@ class User extends Authenticatable
         if (!is_array($user_ids)){
             $user_ids = compact('user_ids');
         }
+
         $this->followings()->detach($user_ids);
     }
 
+
+
+
     //判断是否关注
     public function isFollowing($user_id){
-        return $this->followings()->contains($user_id);
+        return $this->followings->contains($user_id);
     }
+
+
 
 
 
